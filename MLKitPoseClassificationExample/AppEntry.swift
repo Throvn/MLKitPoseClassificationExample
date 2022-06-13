@@ -11,7 +11,7 @@ import SwiftUI
 struct MLKitPoseClassificationExampleApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            VisionCameraView()
         }
     }
 }
