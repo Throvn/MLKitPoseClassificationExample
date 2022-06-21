@@ -17,9 +17,9 @@ class PoseClassifierProcessor {
 	// Specify classes for which we want rep counting.
 	// These are the labels in the given {@code POSE_SAMPLES_FILE}. You can set your own class labels
 	// for your pose samples.
-	private static let PUSHUP_CLASS: String = "pushups_down"
+	private static let SQUAT_CLASS: String = "squats_down"
 	private static let POSE_CLASSES: [String] = [
-		PUSHUP_CLASS
+		SQUAT_CLASS
 	]
 	
 	private final var isStreamMode: Bool

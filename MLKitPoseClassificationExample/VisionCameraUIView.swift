@@ -149,6 +149,14 @@ class VisionCameraUIView: UIView {
 		height: CGFloat
 	) -> CGPoint {
 		let cgPoint = CGPoint(x: point.x, y: point.y)
+		return normalizedPoint(fromCGPoint: cgPoint, width: width, height: height)
+	}
+	
+	private func normalizedPoint(
+		fromCGPoint cgPoint: CGPoint,
+		width: CGFloat,
+		height: CGFloat
+	) -> CGPoint {
 		var normalizedPoint = CGPoint(x: cgPoint.x / width, y: cgPoint.y / height)
 		normalizedPoint = videoPreviewLayer.layerPointConverted(fromCaptureDevicePoint: normalizedPoint)
 		return normalizedPoint
@@ -182,8 +190,16 @@ class VisionCameraUIView: UIView {
 					lineWidth: Constant.lineWidth,
 					dotRadius: Constant.smallDotRadius,
 					positionTransformationClosure: { (position) -> CGPoint in
-						return strongSelf.normalizedPoint(
-							fromVisionPoint: position, width: self.bufferSize.width, height: self.bufferSize.height)
+						var cgPoint = CGPoint(x: position.x, y: position.y)
+						
+						let tmpX = cgPoint.x
+						cgPoint.x = cgPoint.y
+						cgPoint.y = -tmpX + strongSelf.bufferSize.height
+						
+						let normalizedPoint = strongSelf.normalizedPoint(
+							fromCGPoint: cgPoint, width: strongSelf.bufferSize.width, height: strongSelf.bufferSize.height)
+						
+						return normalizedPoint
 					}
 				)
 				
