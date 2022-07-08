@@ -11,7 +11,10 @@ import SwiftUI
 struct MLKitPoseClassificationExampleApp: App {
     var body: some Scene {
         WindowGroup {
-            VisionCameraView()
+			VStack {
+				Text("MLKitPoseClassificationExample")
+				VisionCameraView()
+			}
         }
     }
 }

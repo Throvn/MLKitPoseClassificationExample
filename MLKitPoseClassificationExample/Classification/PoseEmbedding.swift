@@ -8,23 +8,24 @@
 
 import Foundation
 import MLKit
+import simd
 
 /// Generates embedding for given list of Pose landmarks.
 class PoseEmbedding {
 	// Multiplier to apply to the torso to get minimal body size. Picked this by experimentation.
 	private static let TORSO_MULTIPLIER: Float = 2.5
 	
-	static func getPoseEmbedding(landmarks: [PointF3D]) -> [PointF3D] {
-		let normalizedLandmarks: [PointF3D] = normalize(landmarks)
+	static func getPoseEmbedding(landmarks: [simd_float3]) -> [simd_float3] {
+		let normalizedLandmarks: [simd_float3] = normalize(landmarks)
 		
 		return getEmbedding(normalizedLandmarks)
 	}
 	
-	private static func normalize(_ landmarks: [PointF3D]) -> [PointF3D] {
-		var normalizedLandmarks: [PointF3D] = landmarks
+	private static func normalize(_ landmarks: [simd_float3]) -> [simd_float3] {
+		var normalizedLandmarks: [simd_float3] = landmarks
 		
 		// Normalize translation.
-		let center: PointF3D = MLKitUtils.average(landmarks[PoseLmType.leftHip.rawValue], landmarks[PoseLmType.rightHip.rawValue])
+		let center: simd_float3 = MLKitUtils.average(landmarks[PoseLmType.leftHip.rawValue], landmarks[PoseLmType.rightHip.rawValue])
 		normalizedLandmarks = MLKitUtils.subtractAll(center, normalizedLandmarks)
 		
 		// Normalize scale
@@ -37,10 +38,10 @@ class PoseEmbedding {
 	}
 	
 	// Translation normalization should've been done prior to calling this method.
-	private static func getPoseSize(_ landmarks: [PointF3D]) -> Float {
+	private static func getPoseSize(_ landmarks: [simd_float3]) -> Float {
 		// Note: This approach uses only 2D landmarks to compute pose size as using Z wasn't helpful
 		// in our experimentation but you're welcome to tweak.
-		let hipsCenter: PointF3D = MLKitUtils.average(landmarks[PoseLmType.leftHip.rawValue], landmarks[PoseLmType.rightHip.rawValue])
+		let hipsCenter: simd_float3 = MLKitUtils.average(landmarks[PoseLmType.leftHip.rawValue], landmarks[PoseLmType.rightHip.rawValue])
 		
 		let shouldersCenter = MLKitUtils.average(landmarks[PoseLmType.leftShoulder.rawValue], landmarks[PoseLmType.rightShoulder.rawValue])
 		
@@ -59,8 +60,8 @@ class PoseEmbedding {
 		return maxDistance
 	}
 	
-	private static func getEmbedding(_ lm: [PointF3D]) -> [PointF3D] {
-		var embedding: [PointF3D] = []
+	private static func getEmbedding(_ lm: [simd_float3]) -> [simd_float3] {
+		var embedding: [simd_float3] = []
 		
 		// We use several pairwise 3D distances to form pose embedding. These were selected
 		// based on experimentation for best results with our default pose classes as captured in the

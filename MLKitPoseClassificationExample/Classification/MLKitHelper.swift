@@ -7,98 +7,77 @@
 
 import Foundation
 import MLKit
+import simd
 
-/// Utility methods for operations on {@link PointF3D}.
+/// Utility methods for operations on {@link simd_float3}.
 class MLKitUtils {
 	
-	static func subtract(_ b: PointF3D, _ a: PointF3D) -> PointF3D {
-		return PointF3D(x: a.x - b.x, y: a.y - b.y, z: a.z - b.z)
+	static func subtract(_ b: simd_float3, _ a: simd_float3) -> simd_float3 {
+		return a - b
 	}
 	
-	static func multiply(_ a: PointF3D, _ multiple: Float) -> PointF3D {
-		return PointF3D(x: a.x * multiple, y: a.y * multiple, z: a.z * multiple)
+	static func multiply(_ a: simd_float3, _ multiple: Float) -> simd_float3 {
+		return a * multiple
 	}
 	
-	static func multiply(_ a: PointF3D, _ multiple: PointF3D) -> PointF3D {
-		return PointF3D(x: a.x * multiple.x, y: a.y * multiple.y, z: a.z * multiple.z)
+	static func multiply(_ a: simd_float3, _ multiple: simd_float3) -> simd_float3 {
+		return a * multiple
 	}
 	
-	static func average(_ a: PointF3D, _ b: PointF3D) -> PointF3D {
-		return PointF3D(x: (a.x + b.x) * 0.5, y: (a.y + b.y) * 0.5, z: (a.z + b.z) * 0.5)
+	static func average(_ a: simd_float3, _ b: simd_float3) -> simd_float3 {
+		return (a * b) / 0.5
 	}
 	
-	static func l2Norm2D(_ point: PointF3D) -> Float {
+	static func l2Norm2D(_ point: simd_float3) -> Float {
 		return hypot(point.x, point.y)
 	}
 	
-	static func subtractAbs(_ a: PointF3D, _ b: PointF3D) -> PointF3D {
-		// return PointF3D(x: abs(a.x - b.x), y: abs(a.y - b.x), z: abs(a.z - b.z))
-		return subtract(a, b)
+	// TODO: This is not really abs!!!!
+	static func subtractAbs(_ a: simd_float3, _ b: simd_float3) -> simd_float3 {
+		// return simd_float3(x: abs(a.x - b.x), y: abs(a.y - b.x), z: abs(a.z - b.z))
+		return a - b
 	}
 	
-	static func maxAbs(_ point: PointF3D) -> Float {
+	static func maxAbs(_ point: simd_float3) -> Float {
 		return max(max(abs(point.x), abs(point.y)), abs(point.z))
 	}
 	
-	static func sumAbs(point: PointF3D) -> Float {
+	static func sumAbs(point: simd_float3) -> Float {
 		return abs(point.x) + abs(point.y) + abs(point.z)
 	}
 	
 	// TODO: Is this the same as =>
-	// public static void subtractAll(PointF3D p, List<PointF3D> pointsList) {
-	//   ListIterator<PointF3D> iterator = pointsList.listIterator();
+	// public static void subtractAll(simd_float3 p, List<simd_float3> pointsList) {
+	//   ListIterator<simd_float3> iterator = pointsList.listIterator();
 	//   while (iterator.hasNext()) {
 	//	    iterator.set(subtract(p, iterator.next()));
 	//   }
 	// }
-	static func subtractAll(_ p: PointF3D, _ pointsList: [PointF3D]) -> [PointF3D] {
-		var subtractedPointsList: [PointF3D] = []
+	static func subtractAll(_ p: simd_float3, _ pointsList: [simd_float3]) -> [simd_float3] {
+		var subtractedPointsList: [simd_float3] = []
 		for index in pointsList.indices {
-			subtractedPointsList.append(Self.subtract(p, pointsList[index]))
+			subtractedPointsList.append(p - pointsList[index])
 		}
 		
 		return subtractedPointsList
 	}
 	
-	static func multiplyAll(pointsList: [PointF3D], multiple: Float) -> [PointF3D] {
-		var multipliedPointsList: [PointF3D] = []
+	static func multiplyAll(pointsList: [simd_float3], multiple: Float) -> [simd_float3] {
+		var multipliedPointsList: [simd_float3] = []
 		for index in pointsList.indices {
-			multipliedPointsList.append(Self.multiply(pointsList[index], multiple))
+			multipliedPointsList.append(pointsList[index] * multiple)
 		}
 		
 		return multipliedPointsList
 	}
 	
-	static func multiplyAll(pointsList: [PointF3D], multiple: PointF3D) -> [PointF3D] {
-		var multipliedPointsList: [PointF3D] = []
+	static func multiplyAll(pointsList: [simd_float3], multiple: simd_float3) -> [simd_float3] {
+		var multipliedPointsList: [simd_float3] = []
 		for index in pointsList.indices {
-			multipliedPointsList.append(Self.multiply(pointsList[index], multiple))
+			multipliedPointsList.append(pointsList[index] * multiple)
 		}
 		
 		return multipliedPointsList
-	}
-}
-
-class PointF3D: CustomStringConvertible {
-	
-	var x: Float
-	var y: Float
-	var z: Float
-	
-	init(x: Float, y: Float, z: Float) {
-		self.x = x
-		self.y = y
-		self.z = z
-	}
-	
-	init(_ point: Vision3DPoint) {
-		x = Float(point.x)
-		y = Float(point.y)
-		z = Float(point.z)
-	}
-	
-	var description: String {
-		return "[x: \(x), y: \(y), z: \(z)]"
 	}
 }
 

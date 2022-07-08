@@ -8,6 +8,7 @@
 
 import Foundation
 import MLKit
+import simd
 
 /// Deads Pose samples from a csv file.
 class PoseSample {
@@ -18,9 +19,9 @@ class PoseSample {
 	
 	private final var name: String
 	private final var className: String
-	private final var embedding: [PointF3D]
+	private final var embedding: [simd_float3]
 	
-	init(name: String, className: String, landmarks: [PointF3D]) {
+	init(name: String, className: String, landmarks: [simd_float3]) {
 		self.name = name
 		self.className = className
 		self.embedding = PoseEmbedding.getPoseEmbedding(landmarks: landmarks)
@@ -34,7 +35,7 @@ class PoseSample {
 		className
 	}
 	
-	func getEmbedding() -> [PointF3D] {
+	func getEmbedding() -> [simd_float3] {
 		embedding
 	}
 	
@@ -54,14 +55,14 @@ class PoseSample {
 		
 		let name: String = tokens[0]
 		let className: String = tokens[1]
-		var landmarks: [PointF3D] = []
+		var landmarks: [simd_float3] = []
 		// Read from the third token, first 2 tokens are name and class.
 		for i in stride(from: 2, to: tokens.count, by: NUM_DIMS) {
 			
 			// TODO: Do error handling here properly
 			// FUCK SWIFT ERROR HANDLING => HOW CAN THEY EVEN FUCK THIS UP?
 			// print(TAG, "Invalid value " + tokens[i] + " for landmark position.")
-			landmarks.append(PointF3D(x: Float(tokens[i])!,
+			landmarks.append(simd_float3(x: Float(tokens[i])!,
 											  y: Float(tokens[i + 1])!,
 											  z: Float(tokens[i + 2])!))
 		}
