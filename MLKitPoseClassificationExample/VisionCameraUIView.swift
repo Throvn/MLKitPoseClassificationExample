@@ -23,8 +23,7 @@ struct VisionCameraView: UIViewRepresentable {
 	
 	/// Since VisionCameraView only supplies the VideoStream, it doesn't need to listen to
 	/// changes from the UI
-	func updateUIView(_ uiView: VisionCameraUIView, context: UIViewRepresentableContext<VisionCameraView>) {
-	}
+	func updateUIView(_ uiView: VisionCameraUIView, context: UIViewRepresentableContext<VisionCameraView>) {}
 }
 
 class VisionCameraUIView: UIView {

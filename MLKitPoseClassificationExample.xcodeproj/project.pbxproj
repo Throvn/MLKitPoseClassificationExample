@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		22AD3052027A66104E66D6E5 /* Pods_MLKitPoseClassificationExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81DCB9FF2EB8F8D9A8D37EB6 /* Pods_MLKitPoseClassificationExample.framework */; };
 		FB9FCC2D28572B06002D27DA /* AppEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9FCC2C28572B06002D27DA /* AppEntry.swift */; };
-		FB9FCC2F28572B06002D27DA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9FCC2E28572B06002D27DA /* ContentView.swift */; };
 		FB9FCC3128572B06002D27DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB9FCC3028572B06002D27DA /* Assets.xcassets */; };
 		FB9FCC3428572B06002D27DA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB9FCC3328572B06002D27DA /* Preview Assets.xcassets */; };
 		FB9FCC3C28572B58002D27DA /* fitness_pose_samples.csv in Resources */ = {isa = PBXBuildFile; fileRef = FB9FCC3B28572B58002D27DA /* fitness_pose_samples.csv */; };
@@ -31,9 +30,10 @@
 		1E3858FF75C6053BDBB82C10 /* Pods-MLKitPoseClassificationExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MLKitPoseClassificationExample.release.xcconfig"; path = "Target Support Files/Pods-MLKitPoseClassificationExample/Pods-MLKitPoseClassificationExample.release.xcconfig"; sourceTree = "<group>"; };
 		7EF4E626F013F6AE55EEAE7B /* Pods-MLKitPoseClassificationExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MLKitPoseClassificationExample.debug.xcconfig"; path = "Target Support Files/Pods-MLKitPoseClassificationExample/Pods-MLKitPoseClassificationExample.debug.xcconfig"; sourceTree = "<group>"; };
 		81DCB9FF2EB8F8D9A8D37EB6 /* Pods_MLKitPoseClassificationExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MLKitPoseClassificationExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB01F5F42879881E002F0E17 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		FB01F5F528798AA5002F0E17 /* LICENSE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
 		FB9FCC2928572B06002D27DA /* MLKitPoseClassificationExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MLKitPoseClassificationExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB9FCC2C28572B06002D27DA /* AppEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEntry.swift; sourceTree = "<group>"; };
-		FB9FCC2E28572B06002D27DA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FB9FCC3028572B06002D27DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FB9FCC3328572B06002D27DA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FB9FCC3B28572B58002D27DA /* fitness_pose_samples.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fitness_pose_samples.csv; sourceTree = "<group>"; };
@@ -83,6 +83,8 @@
 		FB9FCC2028572B06002D27DA = {
 			isa = PBXGroup;
 			children = (
+				FB01F5F528798AA5002F0E17 /* LICENSE.md */,
+				FB01F5F42879881E002F0E17 /* README.md */,
 				FB9FCC2B28572B06002D27DA /* MLKitPoseClassificationExample */,
 				FB9FCC2A28572B06002D27DA /* Products */,
 				ED4054AF99DCA7BDA9E40FA8 /* Pods */,
@@ -104,7 +106,6 @@
 				FB9FCC5428572E6E002D27DA /* Helper */,
 				FB9FCC4D28572D07002D27DA /* Classification */,
 				FB9FCC3A28572B43002D27DA /* Poses */,
-				FB9FCC2E28572B06002D27DA /* ContentView.swift */,
 				FB9FCC2C28572B06002D27DA /* AppEntry.swift */,
 				FB9FCC4E28572D2E002D27DA /* UIUtilities.swift */,
 				FB9FCC4F28572D2E002D27DA /* VisionCameraUIView.swift */,
@@ -289,7 +290,6 @@
 			files = (
 				FB9FCC4A28572B83002D27DA /* EMASmoothing.swift in Sources */,
 				FB9FCC5228572D2E002D27DA /* VisionCameraUIView.swift in Sources */,
-				FB9FCC2F28572B06002D27DA /* ContentView.swift in Sources */,
 				FB9FCC4B28572B83002D27DA /* PoseSample.swift in Sources */,
 				FB9FCC4828572B83002D27DA /* PoseClassifier.swift in Sources */,
 				FB9FCC5628572E84002D27DA /* PriorityQueue.swift in Sources */,
