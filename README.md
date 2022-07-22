@@ -1,5 +1,9 @@
 # MLKitPoseClassificationExample
 
+## Coming back soon! This repo is currently under review by my employer.
+Due to recent changes in my job, this repo has to be reviewed by my employer.
+I will get it as soon as possible back out there but the process could still last about 2 months.
+
 This repo utilizes the MLKit PoseDetection, to classify *pushups* and *squats*.
 It showcases how to implement the k-nn algorithm on top of BlazePose (since Google unfortunately only implemented it in the Android sample app).
 
